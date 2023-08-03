@@ -1,8 +1,6 @@
 //
-//  AppDelegate.swift
-//  BugHunter macOS
 //
-//  Created by Carson Rau on 8/3/23.
+//  Created by Carson Rau July 2023
 //
 
 import Cocoa

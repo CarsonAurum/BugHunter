@@ -1,30 +1,30 @@
 //
-//  GameViewController.swift
-//  BugHunter macOS
 //
-//  Created by Carson Rau on 8/3/23.
+//  Created by Carson Rau July 2023
 //
 
 import Cocoa
 import SpriteKit
-import GameplayKit
 
 class GameViewController: NSViewController {
+    // MARK: Properties
+    
+    /// A manager for coordinating scene resources and presentation.
+    var sceneManager: SceneManager!
+    
+    // MARK: View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene = GameScene.newGameScene()
+        let keyboardControlInputSource = KeyboardControlInputSource()
+        let gameInput = GameInput(nativeControlInputSource: keyboardControlInputSource)
         
-        // Present the scene
-        let skView = self.view as! SKView
-        skView.presentScene(scene)
+        // Load the initial home scene.
+        let skView = view as! SKView
+        sceneManager = SceneManager(presentingView: skView, gameInput: gameInput)
         
-        skView.ignoresSiblingOrder = true
-        
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+        sceneManager.transitionToScene(identifier: .home)
     }
-
 }
 
